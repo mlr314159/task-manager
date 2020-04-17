@@ -10,11 +10,15 @@ app.config["MONGO_URI"] = 'mongodb+srv://root:r00tUser@cluster0-f1jn6.mongodb.ne
 
 mongo = PyMongo(app)
 
-
 @app.route('/')
 @app.route('/get_tasks')
 def get_tasks():
     return render_template("tasks.html", tasks=mongo.db.tasks.find())
+
+@app.route('/add_task')
+def add_tasks():
+    return render_template("addtask.html", tasks=mongo.db.tasks.find())
+
 
 if __name__ == "__main__":
     app.run(host=os.environ.get('IP'),

@@ -1,5 +1,5 @@
 import os
-from flask import Flask, render_template, render_template, request, url_for
+from flask import Flask, render_template, redirect, request, url_for
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId 
 
@@ -17,7 +17,14 @@ def get_tasks():
 
 @app.route('/add_task')
 def add_task():
-    return render_template("addtask.html")
+    return render_template("addtask.html",
+    categories=mongo.db.categories.find())
+
+@app.route('/insert_task', methods=['POST'])
+def insert_task():
+    tasks= mongo.db.tasks
+    tasks.insert_one(request.form.to_dict())
+    return redirect(url_for('get_tasks'))
 
 
 if __name__ == "__main__":

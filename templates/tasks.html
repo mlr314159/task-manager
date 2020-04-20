@@ -10,14 +10,14 @@
                 <a class="waves-effect waves-light btn btn_small blue">edit</a>
 
             </div>
-            <div class="col s9">
+            <div class="task_header col s9">
                 <strong>{{ task.task_name }}</strong> - {{ task.due_date }}
             </div>
 		</div>
 		<div class="collapsible-body">
 			<span>
             {{ task.task_description }}
-        </span>
+            </span>
 		</div>
 	</li>
 	{% endfor %}
